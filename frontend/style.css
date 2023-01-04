@@ -1,0 +1,99 @@
+/* --------------- MAIN --------------- */
+
+:root {
+    --background-color: #171219;
+    --primary-color: #F0803C;
+    --secondary-color: #310D20;
+    --highlight-color: #EDF060;
+    --element-color: #225560;
+    --error-color: rgb(234, 49, 49);
+}
+
+body{
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+/* --------------- FORM --------------- */
+
+.form-row {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.form-row > label {
+    width: 400px;
+}
+
+form{
+    display: block;
+    border: 3px solid var(--element-color);
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 30px;
+    margin: auto;
+}
+
+input{
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--secondary-color);
+}
+
+
+/*  --------------- LINKS --------------- */
+
+a{
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--highlight-color);
+    text-decoration: none;
+}
+
+
+/* --------------- CONTENT --------------- */
+
+.content {
+    height: 75vh;
+    margin: 20px 0px;
+}
+
+
+/* --------------- HEADER --------------- */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border: 2px solid var(--element-color);
+}
+
+.important-text {
+    font-weight: bold;
+    color: var(--highlight-color);
+    text-decoration: dashed;
+}
+
+
+/* --------------- FOOTER --------------- */
+
+.footer {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    color: var(--element-color);
+}
+
+/* ------------- ERROR -----------------*/
+
+.error {
+    color: var(--error-color);
+    font-size: 30px;
+    text-align: center;
+}
