@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
     const users = await collection.find({"username": username}).toArray();
     if(users.length) {
         if(password === users[0].password) {
-            const token = sign({"username": username}, accessTokenSecret);
+            const token = sign({"username": username}, accessTokenSecret, {expiresIn: '10m'});
             return res
                 .cookie('access_token', token, {
                     httpOnly: true
