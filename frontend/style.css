@@ -61,17 +61,20 @@ a:hover {
 
 .content {
     height: 75vh;
-    margin: 20px 0px;
+    margin: 20px 20px;
+    font-size: 30px;
 }
 
 
 /* --------------- HEADER --------------- */
 
 .header {
+    font-size: 20px;
     display: flex;
     justify-content: space-between;
-    padding: 5px;
+    padding: 10px;
     border: 2px solid var(--element-color);
+    border-radius: 10px;
 }
 
 .important-text {

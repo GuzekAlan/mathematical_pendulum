@@ -21,8 +21,8 @@ app.use(clientRouter);
 
 async function main() {
     await db.connect();
-    app.listen(3100, () => {
-        console.log('Listen on port 3100');
+    app.listen(3200, () => {
+        console.log('Listen on port 3200');
     });
 }
 
