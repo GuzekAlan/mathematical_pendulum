@@ -1,12 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const app = express();
 app.set('view engine', 'ejs');
-
-// Auth
 app.use(cookieParser());
+app.use(cors());
 
 // Database
 const db = require('./dbClient');
