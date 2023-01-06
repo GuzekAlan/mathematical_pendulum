@@ -1,5 +1,17 @@
 <script src="assets/animation.js" defer></script>
 <div class="animation">
-    <canvas width="500" height="500">    
-    </canvas>
+    <div class="canvas">
+        <canvas width="600" height="400"></canvas>
+    </div>
+    <div>
+        <form>
+            <label for="length">Długość liny: </label>
+            <input type="range" name="length" id="length" min="100" max="300">
+            <label for="mass">Masa kulki: </label>
+            <input type="range" name="mass" id="mass" min="30" max="300">
+            <% if(auth) { %>
+                <%- include('save_button') %>
+            <% } %> 
+        </form>
+    </div>
 </div>
