@@ -61,4 +61,26 @@ router.get('/logout', (req, res) => {
         .end();
 });
 
+router.put('/:username', async (req, res) => {
+    const username = req.params.username;
+    const {length, mass} = req.body;
+    try{
+        await collection.updateOne({"username": username}, {
+            $set: {
+                "length": length,
+                "mass": mass
+            }
+        })
+        return res
+            .status(StatusCodes.OK)
+            .end();
+    } catch(err) {
+        console.log(err);
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .end();
+    }
+   
+})
+
 module.exports = router;

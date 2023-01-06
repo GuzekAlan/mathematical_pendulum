@@ -1,6 +1,7 @@
 const canvas = document.querySelector('canvas');
 const lengthInput = document.querySelector('#length');
 const massInput = document.querySelector('#mass');
+const toggleButton = document.querySelector('#toggleButton');
 const ctx = canvas.getContext('2d');
 const size = {x: canvas.width, y: canvas.height};
 const g = 9.81;
@@ -66,14 +67,28 @@ const draw = () => {
 
     drawLine(begin, end)
     drawBall(end, params.mass/10);
+    if(stop) {
+        return;
+    }
     setTimeout(() => {
         requestAnimationFrame(draw);
     }, fpsInterval);
 }
 
-const startAnimation = () => {
+const toggleAnimation = () => {
     if(!isAnimated){
         isAnimated = true;
+        angle = 0;
+        direction = 1;
+        toggleButton.value = "STOP";
+        stop = false;
+        draw();
+    } else {
+        isAnimated = false;
+        angle = 0;
+        direction = 1;
+        toggleButton.value = "START";
+        stop = true;
         draw();
     }
 }
@@ -86,21 +101,29 @@ const refreshMassValue = () => {
     params.mass = massInput.value;
 }
 
-const saveParams = (username) => {
-    console.log(username);
+const saveParams = async (username) => {
+    const response = await fetch(`/api/${username}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params)
+    });
 }
 
 
 // Parameters
-let angle = 0;
-let direction = 1;
-let isAnimated = false;
+let angle;
+let direction;
+let stop;
+let isAnimated = true;
 const maxAngle = 7*Math.PI/180;
 const params = {length: 100, mass: 300}
 const fps = 90;
 const fpsInterval = 1000/fps;
 
 // Bindings
-canvas.addEventListener('click', startAnimation);
+// canvas.addEventListener('click', startAnimation);
+toggleButton.addEventListener('click', toggleAnimation);
 lengthInput.addEventListener('change', refreshInputValue);
 massInput.addEventListener('change', refreshMassValue);
+
+toggleAnimation();
