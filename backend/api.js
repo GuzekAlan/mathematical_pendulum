@@ -81,6 +81,22 @@ router.put('/:username', async (req, res) => {
             .end();
     }
    
-})
+});
+
+router.get('/:username', async (req, res) => {
+    const username = req.params.username;
+    try {
+        const result = await collection.findOne({"username": username});
+        return res
+            .status(StatusCodes.OK)
+            .json({length: result.length, mass: result.mass});
+
+    } catch(err) {
+        console.log(err);
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .end();
+    }
+});
 
 module.exports = router;

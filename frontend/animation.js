@@ -95,11 +95,9 @@ const toggleAnimation = () => {
 
 const refreshInputValue = () => {
     params.length = lengthInput.value;
-}
-
-const refreshMassValue = () => {
     params.mass = massInput.value;
 }
+
 
 const saveParams = async (username) => {
     const response = await fetch(`/api/${username}`, {
@@ -107,6 +105,15 @@ const saveParams = async (username) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params)
     });
+}
+
+const readParams = async (username) => {
+    const response = await fetch(`/api/${username}`, {
+        method: 'GET'
+    });
+    const data = await response.json();
+    params.length = data.length;
+    params.mass = data.mass;
 }
 
 
@@ -124,6 +131,7 @@ const fpsInterval = 1000/fps;
 // canvas.addEventListener('click', startAnimation);
 toggleButton.addEventListener('click', toggleAnimation);
 lengthInput.addEventListener('change', refreshInputValue);
-massInput.addEventListener('change', refreshMassValue);
+massInput.addEventListener('change', refreshInputValue);
 
+refreshInputValue();
 toggleAnimation();
