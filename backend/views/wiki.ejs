@@ -6,8 +6,46 @@
 <%- include('bg_music') %> 
 
 <article>
-    <span><b>Wahadło</b> – ciało zawieszone w jednorodnym polu grawitacyjnym w taki sposób, 
-        że może wykonywać drgania wokół poziomej osi nieprzechodzącej przez środek ciężkości zawieszonego ciała.
-    </span>
-    <p>Wahadłem matematycznym jest materialny punkt zawieszony na nieważkiej nici</p>
+    <p>
+        <b>Wahadło matematyczne</b> - jest to materialny punkt zawieszony na nieważkiej 
+        nici w polu grawitacyjnym, który oscyluje wokół punktu spoczynku.
+    </p>
+    <p>
+        Okres drgań takiego wahadła można obliczyć w następujący sposób: </br>
+        <div class="center-img">
+            <img src="./assets/wahadlo.png" alt="schemat wahadła matematycznego">
+        </div>
+        <div class="indented">
+            <ol>
+                <li>
+                    Policzenie siły stycznej oraz prostopadłej do toru ruchu: 
+                    \[ F_s = mg \sin (\alpha) \]
+                </li>
+                <li>
+                    Dla niewielkich wahań (gdzie kąt wychylenia jest mneijszy niż 7 stopni):
+                    \[ \sin ( \alpha ) = \frac{d}{l} \]
+                </li>
+                <li>
+                    Podstawiając i zamieniając odległość od środka na pozycję w osi x otrzymujemy:
+                    \[ F_s = \frac{mg}{l} \cdot |x| \]
+                </li>
+                <li>
+                    Porównując tą siłę z siłą sprężystości otrzymujemy:
+                    \[ -kx = - \frac{mg}{l}x \]
+                    \[ k = \frac{mg}{l} \]
+                </li>
+                <li>
+                    Podstawiając do wzoru na częstość kołową mamy:
+                    \[ \omega = \sqrt{\frac{g}{l}} \]
+                </li>
+                <li>
+                    A więc okres drgań wynosi:
+                    <b>\[ T = 2\pi \sqrt{l}{g} \]</b>
+                </li>
+            </ol>
+        </div>
+        Okres drgań nie zależy od masy, a jedynie od długości wahadła. <br> 
+        Można to sprawdzić <a href="/animation">TUTAJ</a> :)
+    </p>
+
 </article>

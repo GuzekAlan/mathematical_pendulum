@@ -60,7 +60,7 @@ a:hover {
 /* --------------- CONTENT --------------- */
 
 .content {
-    height: 80vh;
+    min-height: 80vh;
     margin: 20px 20px;
     font-size: 30px;
 }
@@ -113,4 +113,19 @@ a:hover {
 
 .animation > div {
     padding: 20px;
+}
+
+/* -------------- WIKI -------------- */
+
+.indented {
+    margin-left: 40px;
+}
+
+.center-img {
+    display: flex;
+    justify-content: center;
+}
+
+.center-img > img {
+    width: 30%;
 }
