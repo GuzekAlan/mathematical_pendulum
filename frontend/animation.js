@@ -17,6 +17,10 @@ const getColor = (name) => {
     }
 }
 
+const getRealLength = () => {
+    return Math.pow(2, params.length/100);
+}
+
 const drawBackground = () => {
     ctx.strokeStyle = getColor('line');
     ctx.fillStyle = getColor('bg');
@@ -49,14 +53,28 @@ const getT = (length) => {
     return 2*Math.PI*Math.sqrt(length/g);
 }
 
-const getDeltaAngle = (length) => {
+const getDeltaAngle = (length, t) => {
     const T = getT(length);
-    return 2*maxAngle/T/fps;
+    return 2*maxAngle/T*t;
 }
 
-const draw = () => {
+const drawText = () => {
+    const massText = `m = ${params.mass}kg`;
+    const lengthText = `l = ${getRealLength()}m`;
+    const tText = `T = ${getT(getRealLength()).toFixed(2)}s`;
+    ctx.strokeStyle = getColor('line');
+    ctx.fillStyle = getColor('line');
+    ctx.font = "15px Courier New";
+    ctx.fillText(massText, 20, 20);
+    ctx.fillText(lengthText, 20, 40);
+    ctx.fillText(tText, 20, 60);
+}
+
+const draw = (time=1/fps) => {
+    const startTimer = performance.now();
     drawBackground();
-    angle += direction * getDeltaAngle(params.length/10000);
+    drawText();
+    angle += direction * getDeltaAngle(getRealLength(), time);
     if(Math.abs(angle) > maxAngle) {
         direction *= -1;
         // console.log("change direction");
@@ -71,7 +89,7 @@ const draw = () => {
         return;
     }
     setTimeout(() => {
-        requestAnimationFrame(draw);
+        requestAnimationFrame(() => draw(1/(performance.now()-startTimer)));
     }, fpsInterval);
 }
 
@@ -80,7 +98,7 @@ const toggleAnimation = () => {
         isAnimated = true;
         angle = 0;
         direction = 1;
-        toggleButton.value = "STOP";
+        toggleButton.value = "STOP!";
         stop = false;
         draw();
     } else {
@@ -96,6 +114,9 @@ const toggleAnimation = () => {
 const refreshInputValue = () => {
     params.length = lengthInput.value;
     params.mass = massInput.value;
+    if(!isAnimated) {
+        draw()
+    }
 }
 
 
@@ -114,10 +135,16 @@ const readParams = async (username) => {
     const data = await response.json();
     params.length = data.length;
     params.mass = data.mass;
+    lengthInput.value = params.length;
+    massInput.value = params.mass;
+    if(!isAnimated) {
+        draw()
+    }
 }
 
 
 // Parameters
+let start;
 let angle;
 let direction;
 let stop;

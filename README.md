@@ -6,4 +6,4 @@
 ## Set Up
 * go to directory `backend` and run command `npm i`
 * make your `.env` file with database credentials and token secrets
-* in directory `backend ` type command `npm run dev`
+* in directory `backend` type command `npm run dev`

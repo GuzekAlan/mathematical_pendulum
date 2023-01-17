@@ -5,7 +5,6 @@ const {resolve} = require('path');
 
 const router = Router();
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
-const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET;
 
 
 router.use('/assets', static(resolve(__dirname, '../frontend')));
@@ -25,26 +24,12 @@ const renderBase = (req, res, next) => {
 
 const authorization = async (req, res, next) => {
     res.locals.auth = false;
-    try{
+    try {
         const accessToken = req.cookies.accessToken;
-        if(accessToken) {
+        if (accessToken) {
             const data = verify(accessToken, accessTokenSecret);
             res.locals.auth = true;
             res.locals.username = data.username;
-        } else {
-            const refreshToken = req.cookies.refreshToken;
-            if(refreshToken) {
-                verify(refreshToken, refreshTokenSecret, (err, decoded) => {
-                    if(!err) {
-                        const accessToken = sign({"username": decoded.username}, accessTokenSecret, {expiresIn: '5m'});
-                        res.cookie('accessToken', accessToken, {
-                            httpOnly: true,
-                            maxAge: 5*60*1000
-                        });
-                    }
-                });
-                // authorization(req, res, next);
-            }
         }
     } catch (error) {
         console.log(error)
