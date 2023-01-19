@@ -129,3 +129,9 @@ a:hover {
 .center-img > img {
     width: 30%;
 }
+
+.equation {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}

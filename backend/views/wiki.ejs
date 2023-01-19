@@ -1,9 +1,4 @@
-<!-- LATEX ADDED -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-
-<%- include('bg_music') %> 
+<%- include('bg_music') %>
 
 <article>
     <p>
@@ -18,34 +13,134 @@
         <div class="indented">
             <ol>
                 <li>
-                    Policzenie siły stycznej oraz prostopadłej do toru ruchu: 
-                    \[ F_s = mg \sin (\alpha) \]
+                    Policzenie siły stycznej oraz prostopadłej do toru ruchu:
+                    <div class="equation">
+                    <math>
+                        <mrow>
+                            <msub>
+                                <mi>F</mi><mi>s</mi>
+                            </msub>
+                            <mo>=</mo><mi>mg</mi><mo>⋅</mo>
+                            <mi>sin</mi>
+                            <mo>(</mo>
+                                <mi>α</mi>
+                            <mo>)</mo>
+                        </mrow>
+                    </math>
+                    </div>
                 </li>
                 <li>
                     Dla niewielkich wahań (gdzie kąt wychylenia jest mneijszy niż 7 stopni):
-                    \[ \sin ( \alpha ) = \frac{d}{l} \]
+                    <div class="equation">
+                        <math>
+                            <mrow>
+                                <mrow>
+                                    <mi>sin</mi>
+                                    <mo>⁡</mo>
+                                </mrow>
+                                <mo form="prefix" stretchy="false">(</mo>
+                                <mi>α</mi>
+                                <mo form="postfix" stretchy="false">)</mo>
+                                <mo>=</mo>
+                                <mfrac>
+                                    <mi>d</mi>
+                                    <mi>l</mi>
+                                </mfrac>
+                            </mrow>
+                        </math>
+                    </div>
                 </li>
                 <li>
                     Podstawiając i zamieniając odległość od środka na pozycję w osi x otrzymujemy:
-                    \[ F_s = \frac{mg}{l} \cdot |x| \]
+                    <div class="equation">
+                        <math>
+                            <mrow>
+                                <msub>
+                                    <mi>F</mi>
+                                    <mi>s</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <mfrac>
+                                    <mi>mg</mi>
+                                    <mi>l</mi>
+                                </mfrac>
+                                <mo>⋅</mo>
+                                <mi>|x|</mi>
+                            </mrow>
+                        </math>
+                    </div>
                 </li>
                 <li>
                     Porównując tą siłę z siłą sprężystości otrzymujemy:
-                    \[ -kx = - \frac{mg}{l}x \]
-                    \[ k = \frac{mg}{l} \]
+                    <div class="equation">
+                        <math>
+                            <mrow>
+                                <mo>−</mo>
+                                <mi>kx</mi>
+                                <mo>=</mo>
+                                <mo>−</mo>
+                                <mfrac>
+                                    <mi>mg</mi>
+                                    <mi>l</mi>
+                                </mfrac>
+                                <mi>x</mi>
+                            </mrow>
+                        </math>
+                    </div>
+                    <div class="equation">
+                        <math>
+                            <mrow>
+                                <mi>k</mi>
+                                <mo>=</mo>
+                                <mfrac>
+                                    <mi>mg</mi>
+                                    <mi>l</mi>
+                                </mfrac>
+                            </mrow>
+                        </math>
+                    </div>
                 </li>
                 <li>
                     Podstawiając do wzoru na częstość kołową mamy:
                     \[ \omega = \sqrt{\frac{g}{l}} \]
+                    <div class="equation">
+                        <math>
+                            <mrow>
+                                <mi>ω</mi>
+                                <mo>=</mo>
+                                <msqrt>
+                                    <mfrac>
+                                        <mi>g</mi>
+                                        <mi>l</mi>
+                                    </mfrac>
+                                </msqrt>
+                            </mrow>
+                        </math>
+                    </div>
                 </li>
                 <li>
                     A więc okres drgań wynosi:
-                    <b>\[ T = 2\pi \sqrt{l}{g} \]</b>
+                    <div class="equation">
+                        <math display="block" style="font-weight: bold;">
+                            <mrow>
+                                <mi>T</mi>
+                                <mo>=</mo>
+                                <mn>2</mn>
+                                <mi>π</mi>
+                                <msqrt>
+                                    <mfrac>
+                                        <mi>l</mi>
+                                        <mi>g</mi>
+                                    </mfrac>
+                                </msqrt>
+                            </mrow>
+                        </math>
+                    </div>
                 </li>
             </ol>
         </div>
-        Okres drgań nie zależy od masy, a jedynie od długości wahadła. <br> 
-        Można to sprawdzić <a href="/animation">TUTAJ</a> :)
+        Okres drgań nie zależy od masy, a jedynie od długości wahadła. <br>
+    Można to sprawdzić <b><u><a href="/animation">TUTAJ</a></u></b> :)
     </p>
 
 </article>
