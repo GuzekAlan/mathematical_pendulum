@@ -1,13 +1,9 @@
 const {verify, sign} = require('jsonwebtoken');
-const {Router, static} = require('express');
+const {Router} = require('express');
 const {StatusCodes} = require('http-status-codes');
-const {resolve} = require('path');
 
 const router = Router();
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
-
-
-router.use('/assets', static(resolve(__dirname, '../frontend')));
 
 
 const renderBase = (req, res, next) => {
