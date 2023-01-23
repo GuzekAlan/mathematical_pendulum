@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const path = require('path');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -19,8 +18,6 @@ app.use('/api', apiRouter);
 
 // Client
 const clientRouter = require('./client');
-const {static} = require("express");
-const {resolve} = require("path");
 app.use(clientRouter);
 
 async function main() {
