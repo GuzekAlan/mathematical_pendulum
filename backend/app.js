@@ -19,8 +19,6 @@ app.use('/api', apiRouter);
 
 // Client
 const clientRouter = require('./client');
-const {static} = require("express");
-const {resolve} = require("path");
 app.use(clientRouter);
 
 async function main() {
