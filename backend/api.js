@@ -1,6 +1,7 @@
 const {Router, json, urlencoded} = require('express');
 const {StatusCodes, getReasonPhrase} = require('http-status-codes');
 const {sign, verify} = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const db = require('./dbClient');
 
 const collection = db.db(process.env.DATABASE_NAME).collection(process.env.DATABASE_COLLECTION);
@@ -12,36 +13,42 @@ router.use(urlencoded({extended: true}));
 
 router.post('/login', async (req, res) => {
     const {username, password} = req.body;
-    const users = await collection.find({"username": username}).toArray();
-    if(users.length) {
-        if(password === users[0].password) {
+    const user = await collection.findOne({"username": username});
+    if(user) {
+        bcrypt.compare(password, user.password, (err, result) => {
+            if (!result) {
+                return res
+                    .status(StatusCodes.BAD_REQUEST)
+                    .json({error: "Błędne hasło"});
+            }
             const accessToken = sign({"username": username}, accessTokenSecret, {expiresIn: '10m'});
             return res
                 .cookie('accessToken', accessToken, {
                     httpOnly: true,
-                    maxAge: 10*60*1000
+                    maxAge: 10 * 60 * 1000
                 })
                 .status(StatusCodes.OK)
                 .json({});
-        }
+        });
+    } else {
         return res
             .status(StatusCodes.BAD_REQUEST)
-            .json({error: "Błędne hasło"});
+            .json({error: "Nie ma takiego użytkownika"});
     }
-    return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({error: "Nie ma takiego użytkownika"});
 });
 
 router.post('/register', async (req, res) => {
-    const {username} = req.body;
+    const {username, password} = req.body;
     const users = await collection.find({"username": username}).toArray();
     if(users.length){
         return res
             .status(StatusCodes.BAD_REQUEST)
             .json({error: `Podany użytkownik ${username} już istnieje`});
     }
-    await collection.insertOne(req.body);
+    bcrypt.hash(password, 10,  async (err, hashPass) => {
+        const userData = {"username": username, "password": hashPass};
+        await collection.insertOne(userData);
+    })
     return res
         .status(StatusCodes.OK)
         .json({});
@@ -50,8 +57,7 @@ router.post('/register', async (req, res) => {
 router.get('/logout', (req, res) => {
     return res
         .clearCookie("accessToken")
-        .redirect("/")
-        .end();
+        .redirect("/");
 });
 
 router.put('/:username', async (req, res) => {

@@ -5,7 +5,7 @@ form.addEventListener('submit', async (event) => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     const errorParagraph = document.querySelector('p');
-    if(data.password != data.repeatPassword) {
+    if(data.password !== data.repeatPassword) {
         errorParagraph.innerText = "Hasła nie są takie same";
         return;
     }

@@ -133,6 +133,9 @@ const readParams = async (username) => {
         method: 'GET'
     });
     const data = await response.json();
+    if(!data.length || !data.mass) {
+        return;
+    }
     params.length = data.length;
     params.mass = data.mass;
     lengthInput.value = params.length;
