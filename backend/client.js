@@ -7,9 +7,6 @@ const router = Router();
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
 
 
-router.use('/assets', static(resolve(__dirname, '../frontend')));
-
-
 const renderBase = (req, res, next) => {
     if(res.locals.auth){
         res.locals.header_content = 'header_logged';

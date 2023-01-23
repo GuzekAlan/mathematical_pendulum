@@ -7,6 +7,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(cors());
+app.use('/assets', express.static('../frontend'))
 
 // Database
 const db = require('./dbClient');
