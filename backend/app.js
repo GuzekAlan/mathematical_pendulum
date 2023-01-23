@@ -25,10 +25,14 @@ const clientRouter = require('./client');
 app.use(clientRouter);
 
 async function main() {
-    await db.connect();
-    app.listen(PORT, () => {
-        console.log(`Listen on port ${PORT}`);
-    });
+    try{
+        await db.connect();
+        app.listen(PORT, () => {
+            console.log(`Listen on port ${PORT}`);
+        });
+    } catch(err) {
+        console.log(err);
+    }
 }
 
 main();
